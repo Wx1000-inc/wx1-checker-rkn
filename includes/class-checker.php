@@ -21,6 +21,9 @@ class WXRKN_Checker {
 	/** @var string User-Agent header sent with every request. */
 	private $user_agent = 'Mozilla/5.0 (compatible; WX1RKNChecker/1.0; +https://github.com/Wx1000-inc/wx1-checker-rkn)';
 
+	/** @var string[] HTTP fetch errors keyed by URL (populated during fetch_pages). */
+	private $fetch_errors = array();
+
 	// -------------------------------------------------------------------------
 
 	/**
@@ -52,16 +55,26 @@ class WXRKN_Checker {
 	 *                On failure the array contains a single 'error' key.
 	 */
 	public function check_domain( $domain ) {
+		$this->fetch_errors = array();
+
 		$url = $this->normalize_url( trim( $domain ) );
 
 		if ( empty( $url ) ) {
-			return array( 'error' => 'Invalid domain' );
+			return array( 'error' => 'Invalid or empty domain.' );
 		}
 
 		$pages = $this->fetch_pages( $url );
 
 		if ( empty( $pages ) ) {
-			return array( 'error' => 'Could not fetch site' );
+			$details = array();
+			foreach ( $this->fetch_errors as $tried_url => $reason ) {
+				$details[] = $tried_url . ' → ' . $reason;
+			}
+			$message = 'Could not fetch site';
+			if ( ! empty( $details ) ) {
+				$message .= ': ' . implode( '; ', $details );
+			}
+			return array( 'error' => $message );
 		}
 
 		$combined = implode( "\n", $pages );
@@ -164,11 +177,13 @@ class WXRKN_Checker {
 		);
 
 		if ( is_wp_error( $response ) ) {
+			$this->fetch_errors[ $url ] = $response->get_error_message();
 			return false;
 		}
 
 		$code = (int) wp_remote_retrieve_response_code( $response );
 		if ( $code < 200 || $code >= 400 ) {
+			$this->fetch_errors[ $url ] = 'HTTP ' . $code;
 			return false;
 		}
 
@@ -324,12 +339,13 @@ class WXRKN_Checker {
 	}
 
 	/**
-	 * Sape link-exchange counter.
+	 * Sape link-exchange counter (detected via acint.net code or legacy sape.ru markers).
 	 */
 	private function check_sape( $html ) {
 		return $this->match_any(
 			$html,
 			array(
+				'acint\.net',
 				'sape\.ru',
 				'__sape_',
 				'sape_block',
