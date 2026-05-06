@@ -9,7 +9,7 @@ WordPress-плагин для **пакетной асинхронной пров
 | **Google Analytics** | `analytics.js`, `gtag.js`, GTM, `UA-…`, `G-…` |
 | **Политика конфиденциальности** | Ссылки/текст с `privacy`, `конфиденциальност` и т.п. |
 | **Яндекс.Метрика** | `mc.yandex.ru/metrika`, `ym(`, `Ya.Metrika` |
-| **Sape** | `sape.ru`, `__sape_`, `sape.js` |
+| **Sape** | `acint.net`, `sape.ru`, `__sape_`, `sape.js` |
 | **LiveInternet** | `counter.yadro.ru`, `liveinternet.ru/counter` |
 | **Комментарии** | `#comments`, `.comments-area`, Disqus, `comment_form` |
 

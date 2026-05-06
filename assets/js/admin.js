@@ -266,8 +266,10 @@
 		/* Status cell */
 		var $st = $tds.last().removeClass();
 		if ( data.error ) {
+			var $detail = $( '<small>' ).addClass( 'wxrkn-error-detail' ).text( data.error ).attr( 'title', data.error );
 			$st.addClass( 'wxrkn-status-error' )
 				.text( wxrknData.i18n.error )
+				.append( $( '<br>' ), $detail )
 				.attr( 'title', data.error );
 		} else {
 			$st.addClass( 'wxrkn-status-done' ).text( '\u2713' );
@@ -282,7 +284,12 @@
 		for ( var i = 1; i < 7; i++ ) {
 			$tds.eq( i ).removeClass().addClass( 'wxrkn-cell-error' ).text( wxrknData.i18n.na );
 		}
-		$tds.last().removeClass().addClass( 'wxrkn-status-error' ).text( wxrknData.i18n.error ).attr( 'title', msg || '' );
+		var $last = $tds.last().removeClass().addClass( 'wxrkn-status-error' )
+			.text( wxrknData.i18n.error )
+			.attr( 'title', msg || '' );
+		if ( msg ) {
+			$last.append( $( '<br>' ), $( '<small>' ).addClass( 'wxrkn-error-detail' ).text( msg ).attr( 'title', msg ) );
+		}
 
 		state.results[ $row.find( '.wxrkn-domain-cell' ).text() ] = { error: msg };
 	}
