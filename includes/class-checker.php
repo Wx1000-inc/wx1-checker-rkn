@@ -303,7 +303,7 @@ class WXRKN_Checker {
 		if ( preg_match_all( '/href=["\']([^"\']+)["\']/', $html, $m ) ) {
 			foreach ( $m[1] as $href ) {
 				foreach ( $href_patterns as $p ) {
-					if ( preg_match( '/' . $p . '/iu', $href ) ) {
+					if ( preg_match( '#' . $p . '#iu', $href ) ) {
 						return true;
 					}
 				}
@@ -403,7 +403,7 @@ class WXRKN_Checker {
 	 */
 	private function match_any( $haystack, array $patterns ) {
 		foreach ( $patterns as $pattern ) {
-			if ( preg_match( '/' . $pattern . '/iu', $haystack ) ) {
+			if ( preg_match( '#' . $pattern . '#iu', $haystack ) ) {
 				return true;
 			}
 		}
