@@ -1,0 +1,230 @@
+/* ==========================================================================
+   WX1 RKN Checker – admin styles
+   ========================================================================== */
+
+/* Layout ------------------------------------------------------------------ */
+.wxrkn-wrap {
+	max-width: 1500px;
+}
+
+.wxrkn-layout {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+	margin-top: 20px;
+}
+
+.wxrkn-form-panel {
+	flex: 0 0 370px;
+	min-width: 300px;
+}
+
+.wxrkn-results-panel {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+/* Card -------------------------------------------------------------------- */
+.wxrkn-card {
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	border-radius: 4px;
+	padding: 20px 24px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+}
+
+.wxrkn-card h2,
+.wxrkn-card h3 {
+	margin-top: 0;
+}
+
+/* Domain textarea --------------------------------------------------------- */
+.wxrkn-domains-textarea {
+	display: block;
+	width: 100%;
+	height: 210px;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 13px;
+	line-height: 1.5;
+	resize: vertical;
+	padding: 8px 10px;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+/* Settings table ---------------------------------------------------------- */
+.wxrkn-settings-table {
+	margin-top: 6px;
+	width: 100%;
+}
+
+.wxrkn-settings-table th {
+	width: 54%;
+	font-weight: 600;
+	padding: 7px 10px 7px 0;
+	vertical-align: top;
+}
+
+.wxrkn-settings-table td {
+	padding: 5px 0;
+	vertical-align: top;
+}
+
+.wxrkn-settings-table .description {
+	margin-top: 3px;
+	font-size: 11px;
+	color: #646970;
+}
+
+/* Action buttons ---------------------------------------------------------- */
+.wxrkn-actions {
+	margin-top: 18px;
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+/* Progress bar ------------------------------------------------------------ */
+.wxrkn-progress-bar-wrap {
+	width: 100%;
+	height: 22px;
+	background: #e0e0e0;
+	border-radius: 11px;
+	overflow: hidden;
+	margin-bottom: 6px;
+}
+
+.wxrkn-progress-bar {
+	height: 100%;
+	width: 0;
+	background: linear-gradient(90deg, #2271b1 0%, #135e96 100%);
+	border-radius: 11px;
+	transition: width .35s ease;
+}
+
+.wxrkn-progress-text {
+	font-weight: 700;
+	margin: 4px 0 2px;
+}
+
+.wxrkn-status-text {
+	font-size: 12px;
+	color: #646970;
+	margin: 0;
+	min-height: 16px;
+}
+
+/* Results table ----------------------------------------------------------- */
+.wxrkn-table-scroll {
+	overflow-x: auto;
+}
+
+.wxrkn-results-table {
+	min-width: 700px;
+	font-size: 13px;
+	table-layout: fixed;
+}
+
+.wxrkn-results-table thead th {
+	background: #f0f0f1;
+	white-space: nowrap;
+	font-weight: 700;
+	padding: 8px 10px;
+}
+
+.wxrkn-results-table .col-domain {
+	width: 190px;
+}
+
+.wxrkn-results-table .col-check {
+	width: 110px;
+	text-align: center;
+}
+
+.wxrkn-results-table .col-status {
+	width: 80px;
+	text-align: center;
+}
+
+/* Cell value states ------------------------------------------------------- */
+.wxrkn-cell-yes {
+	background-color: #ffe0e0 !important;
+	color: #8b0000 !important;
+	font-weight: 700;
+	text-align: center;
+}
+
+.wxrkn-cell-no {
+	color: #2e7d32;
+	font-weight: 500;
+	text-align: center;
+}
+
+.wxrkn-cell-pending {
+	color: #aaa;
+	text-align: center;
+	font-style: italic;
+}
+
+.wxrkn-cell-error {
+	color: #999;
+	text-align: center;
+	font-size: 11px;
+}
+
+/* Domain cell */
+.wxrkn-domain-cell {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 12px;
+	word-break: break-all;
+	padding-left: 10px !important;
+}
+
+/* Status cell */
+.wxrkn-status-done {
+	color: #1a7340;
+	font-weight: 700;
+	text-align: center;
+}
+
+.wxrkn-status-pending {
+	color: #b06800;
+	text-align: center;
+}
+
+.wxrkn-status-error {
+	color: #cc0000;
+	text-align: center;
+}
+
+/* Checking row: pulsing animation */
+@keyframes wxrkn-pulse {
+	0%   { opacity: 1; }
+	50%  { opacity: .45; }
+	100% { opacity: 1; }
+}
+
+.wxrkn-row-checking {
+	animation: wxrkn-pulse 1.1s ease-in-out infinite;
+	background-color: #fffde7 !important;
+}
+
+/* History section --------------------------------------------------------- */
+.wxrkn-history {
+	margin-top: 4px;
+}
+
+/* Responsive -------------------------------------------------------------- */
+@media screen and (max-width: 920px) {
+	.wxrkn-layout {
+		flex-direction: column;
+	}
+
+	.wxrkn-form-panel {
+		flex: none;
+		width: 100%;
+	}
+}
